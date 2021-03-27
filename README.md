@@ -14,4 +14,4 @@ It is possible to put more binaries in the initramfs, just copy those with the `
 # Credits
 
 This script is based on a one given in
-[https://wiki.gentoo.org/wiki/Custom_Initramfs/Examples](Gentoo Wiki Custom_Initramfs/Examples)
+[Gentoo Wiki Custom_Initramfs/Examples](https://wiki.gentoo.org/wiki/Custom_Initramfs/Examples)
