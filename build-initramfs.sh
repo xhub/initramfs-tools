@@ -1,6 +1,8 @@
 # from https://wiki.gentoo.org/wiki/Custom_Initramfs/Examples
 
 INITRAMFS_DIR="/usr/src/initramfs"
+INITRAMFS_CPIO="/usr/src/initramfs.cpio"
+INIT_SCRIPT="/root/init"
 
 # needed to make parsing outputs more reliable
 export LC_ALL=C
@@ -145,7 +147,7 @@ copy /sbin/cryptsetup /sbin/
 ###############################################################################
 
 # copy the init script
-cp /root/init "${INITRAMFS_DIR}/init"
+cp ${INIT_SCRIPT} "${INITRAMFS_DIR}/init"
 chmod +x "${INITRAMFS_DIR}/init"
 
 # copy the firmwares
@@ -159,7 +161,7 @@ cp /lib/firmware/i915/kbl_dmc_ver1_04.bin "${INITRAMFS_DIR}/lib/firmware/i915"
 # now build the image file
 pushd "${INITRAMFS_DIR}"
 #find . -print0 | cpio --null -ov --format=newc | gzip -9 > ../initramfs.img
-find . -print0 | cpio --null -ov --format=newc > ../initramfs.cpio
+find . -print0 | cpio --null -ov --format=newc > ${INITRAMFS_CPIO}
 # set restrictive permissions, it contains a decryption key
-chmod 400 ../initramfs.cpio
+chmod 400 ${INITRAMFS_CPIO}
 popd
